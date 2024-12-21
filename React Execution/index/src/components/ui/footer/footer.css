@@ -1,0 +1,12 @@
+footer
+{
+    height: 180px;
+    background-color: #2F2F2F;
+}
+
+footer .textContainer
+{
+    width: 95%;
+    max-height: 100%;
+    margin-left: 3%;
+}

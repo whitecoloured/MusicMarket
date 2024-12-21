@@ -7,8 +7,8 @@ using MusicMarket.Application.CommandsAndQueries.Reviews.AddReview;
 using MusicMarket.Application.CommandsAndQueries.Reviews.DeleteReview;
 using MusicMarket.Application.CommandsAndQueries.Reviews.EditReview;
 using MusicMarket.Application.CommandsAndQueries.Reviews.GetAllUsersReviews;
-using MusicMarket.Application.CommandsAndQueries.Reviews.GetLastUsersReview;
 using MusicMarket.Application.CommandsAndQueries.Reviews.GetReviews;
+using MusicMarket.Application.CommandsAndQueries.Reviews.GetTopThreeReviews;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -35,12 +35,11 @@ namespace MusicMarket.API.Controllers
         }
 
         [HttpGet]
-        [Route("GetLastUsersReview")]
-        [Authorize("UserPolicy")]
-        public async Task<IActionResult> GetLastUsersReview()
+        [Route("GetTopThreeReviews")]
+        public async Task<IActionResult> GetTopThreeReviews(Guid ProductID)
         {
-            var HeaderData = Request.Headers.FirstOrDefault(x => x.Key == "Authorization");
-            GetLastUsersReviewQuery query = new(HeaderData);
+            var headerData = Request.Headers.FirstOrDefault(x => x.Key == "Authorization");
+            GetTopThreeReviewQuery query = new(ProductID, headerData);
             var data= await _mediator.Send(query);
             return Ok(data);
         }
@@ -62,7 +61,7 @@ namespace MusicMarket.API.Controllers
         public async Task<IActionResult> AddReview(ReviewModel review, Guid ProductID)
         {
             var HeaderData = Request.Headers.FirstOrDefault(x => x.Key == "Authorization");
-            AddReviewCommand command= new AddReviewCommand(review, ProductID, HeaderData);
+            AddReviewCommand command= new(review, ProductID, HeaderData);
             await _mediator.Send(command);
             return Ok();
         }

@@ -1,0 +1,18 @@
+.catalogueForm
+{
+    background-color: #3F4F57;
+    min-height: 650px;
+    height: fit-content;
+}
+
+.catalogueForm .firstCol
+{
+    background-color: white;
+    width: 16%;
+    height: fit-content;
+}
+
+.catalogueForm .secCol
+{
+    width: 84%;
+}

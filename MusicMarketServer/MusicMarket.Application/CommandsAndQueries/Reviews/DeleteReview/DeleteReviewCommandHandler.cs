@@ -16,11 +16,7 @@ namespace MusicMarket.Application.CommandsAndQueries.Reviews.DeleteReview
 
         public async Task<Unit> Handle(DeleteReviewCommand request, CancellationToken cancellationToken)
         {
-            var review = await _repo.GetReviewByID(request.ReviewID);
-            if (review is null)
-            {
-                throw new NotFoundException("The review wasn't found");
-            }
+            var review = await _repo.GetReviewByID(request.ReviewID) ?? throw new NotFoundException("The review wasn't found");
             await _repo.DeleteReview(review);
             return Unit.Value;
         }

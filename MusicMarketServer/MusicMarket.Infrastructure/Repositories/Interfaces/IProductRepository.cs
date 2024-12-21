@@ -10,10 +10,12 @@ namespace MusicMarket.Infrastructure.Repositories.Interfaces
     public interface IProductRepository
     {
         IQueryable<Product> GetAllProducts();
-        IQueryable<Product> GetFilteredByCategoryProducts(IQueryable<Product> products, ProductCategory category);
 
-        IQueryable<Product> GetFilteredByBrandProducts(IQueryable<Product> products, Guid BrandID);
-        IQueryable<Product> GetFilteredByPriceRangeProducts(IQueryable<Product> products,decimal firstPrice, decimal secondPrice);
+        IQueryable<Product> GetFilteredBySearchNameProducts(IQueryable<Product> products, string searchName);
+        IQueryable<Product> GetFilteredByCategoryProducts(IQueryable<Product> products, IEnumerable<ProductCategory?> Categories);
+
+        IQueryable<Product> GetFilteredByBrandProducts(IQueryable<Product> products, IEnumerable<Guid?> BrandIDs);
+        IQueryable<Product> GetFilteredByPriceRangeProducts(IQueryable<Product> products,decimal? firstPrice, decimal? secondPrice);
 
         IQueryable<Product> GetSortedProducts(IQueryable<Product> products,bool OrderByAsc, string SortItem);
         IQueryable<Product> GetProductsByPage(IQueryable<Product> products,int page);

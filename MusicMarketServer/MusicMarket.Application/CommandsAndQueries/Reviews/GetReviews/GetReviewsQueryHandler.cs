@@ -13,12 +13,10 @@ namespace MusicMarket.Application.CommandsAndQueries.Reviews.GetReviews
     public class GetReviewsQueryHandler : IRequestHandler<GetReviewsQuery, List<GetReviewsResponse>>
     {
         private readonly IReviewRepository _repo;
-        private readonly IMapper _mapper;
 
-        public GetReviewsQueryHandler(IReviewRepository repo, IMapper mapper)
+        public GetReviewsQueryHandler(IReviewRepository repo)
         {
             _repo = repo;
-            _mapper = mapper;
         }
         public async Task<List<GetReviewsResponse>> Handle(GetReviewsQuery request, CancellationToken cancellationToken)
         {

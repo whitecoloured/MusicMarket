@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
 using MusicMarket.Application.CommandsAndQueries.Reviews;
 using MusicMarket.Application.CommandsAndQueries.Reviews.GetAllUsersReviews;
-using MusicMarket.Application.CommandsAndQueries.Reviews.GetLastUsersReview;
-using MusicMarket.Application.CommandsAndQueries.Reviews.GetReviews;
 using MusicMarket.Core.Models;
 
 namespace MusicMarket.Application.Mapping
@@ -15,10 +13,6 @@ namespace MusicMarket.Application.Mapping
                 .ForMember(dest => dest.Mark, opt => opt.MapFrom(p => p.Mark))
                 .ForMember(dest => dest.ReviewDesc, opt => opt.MapFrom(p => p.ReviewDesc));
 
-            CreateMap<Review, GetLastUsersReviewResponse>()
-                .ForMember(dest => dest.ProductName, opt => opt.MapFrom(p => p.Product.Name))
-                .ForMember(dest => dest.Mark, opt => opt.MapFrom(p => p.Mark))
-                .ForMember(dest => dest.ReviewDesc, opt => opt.MapFrom(p => p.ReviewDesc));
 
             CreateMap<Review, GetAllUsersReviewsResponse>()
                 .ForMember(dest => dest.ID, opt => opt.MapFrom(p => p.Id))

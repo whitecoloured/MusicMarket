@@ -13,3 +13,4 @@ C:\Users\Юрий\Desktop\рофлокоды\MusicMarket\MusicMarketServer\Music
 C:\Users\Юрий\Desktop\рофлокоды\MusicMarket\MusicMarketServer\MusicMarket.Core\obj\Debug\net5.0\MusicMarket.Core.pdb
 C:\Users\Юрий\Desktop\рофлокоды\MusicMarket\MusicMarketServer\MusicMarket.Core\obj\Debug\net5.0\MusicMarket.Core.genruntimeconfig.cache
 C:\Users\Юрий\Desktop\рофлокоды\MusicMarket\MusicMarketServer\MusicMarket.Core\obj\Debug\net5.0\refint\MusicMarket.Core.dll
+C:\Users\Юрий\Desktop\рофлокоды\MusicMarket\MusicMarketServer\MusicMarket.Core\obj\Debug\net5.0\MusicMarket.Core.sourcelink.json

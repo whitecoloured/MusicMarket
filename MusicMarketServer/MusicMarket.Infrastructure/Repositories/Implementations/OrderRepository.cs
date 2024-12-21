@@ -36,6 +36,7 @@ namespace MusicMarket.Infrastructure.Repositories.Implementations
                         .Include(p => p.Product)
                         .ThenInclude(p=> p.Brand)
                         .Where(p => p.UserID == UserID)
+                        .OrderByDescending(p=> p.OrderDate)
                         .ToListAsync();
             return data;
         }

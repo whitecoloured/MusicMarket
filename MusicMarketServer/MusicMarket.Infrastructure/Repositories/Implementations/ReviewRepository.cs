@@ -70,17 +70,6 @@ namespace MusicMarket.Infrastructure.Repositories.Implementations
             return sortedData;
         }
 
-        public async Task<Review> GetLastUsersReview(Guid UserID)
-        {
-            var data = await _context.Reviews
-                            .AsNoTracking()
-                            .Include(p=> p.Product)
-                            .OrderByDescending(p => p.ReviewDate)
-                            .FirstOrDefaultAsync(p => p.UserID == UserID);
-
-            return data;
-        }
-
         public async Task<List<Review>> GetAllUsersReviews(Guid UserID)
         {
             var data= await _context.Reviews
@@ -89,6 +78,18 @@ namespace MusicMarket.Infrastructure.Repositories.Implementations
                             .Where(p=> p.UserID==UserID)
                             .OrderByDescending(p=> p.ReviewDate)
                             .ToListAsync();
+            return data;
+        }
+
+        public async Task<List<Review>> GetAllReviewsAsList(Guid ProductID)
+        {
+            var data = await _context.Reviews
+                        .AsNoTracking()
+                        .Include(p => p.User)
+                        .Where(p => p.ProductID == ProductID)
+                        .OrderByDescending(p => p.ReviewDate)
+                        .ToListAsync();
+
             return data;
         }
     }

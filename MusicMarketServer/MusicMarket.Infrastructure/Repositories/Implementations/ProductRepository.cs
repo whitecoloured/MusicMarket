@@ -44,9 +44,9 @@ namespace MusicMarket.Infrastructure.Repositories.Implementations
         public IQueryable<Product> GetAllProducts()
         {
             var data = _context.Products
-                                            .AsNoTracking()
-                                            .Include(p=> p.Brand)
-                                            .AsQueryable();
+                                .AsNoTracking()
+                                .Include(p=> p.Brand)
+                                .AsQueryable();
             return data;
         }
 
@@ -72,17 +72,17 @@ namespace MusicMarket.Infrastructure.Repositories.Implementations
             return await products.ToListAsync();
         }
 
-        public IQueryable<Product> GetFilteredByBrandProducts(IQueryable<Product> products, Guid BrandID)
+        public IQueryable<Product> GetFilteredByBrandProducts(IQueryable<Product> products, IEnumerable<Guid?> BrandIDs)
         {
-            return products.Where(p => p.BrandID==BrandID);
+            return products.Where(p => BrandIDs.Contains(p.BrandID));
         }
 
-        public IQueryable<Product> GetFilteredByCategoryProducts(IQueryable<Product> products, ProductCategory category)
+        public IQueryable<Product> GetFilteredByCategoryProducts(IQueryable<Product> products, IEnumerable<ProductCategory?> Categories)
         {
-            return products.Where(p => p.Category == category);
+            return products.Where(p => Categories.Contains(p.Category));
         }
 
-        public IQueryable<Product> GetFilteredByPriceRangeProducts(IQueryable<Product> products, decimal firstPrice, decimal secondPrice)
+        public IQueryable<Product> GetFilteredByPriceRangeProducts(IQueryable<Product> products, decimal? firstPrice, decimal? secondPrice)
         {
             return products.Where(p => firstPrice <= p.Price && p.Price <= secondPrice);
         }
@@ -108,6 +108,11 @@ namespace MusicMarket.Infrastructure.Repositories.Implementations
         public async Task<bool> HasTheProduct(Product product)
         {
             return await _context.Products.AnyAsync(p => p.Name==product.Name && p.Id!=product.Id);
+        }
+
+        public IQueryable<Product> GetFilteredBySearchNameProducts(IQueryable<Product> products, string searchName)
+        {
+            return products.Where(p=> p.Name.ToLower()==searchName.ToLower());
         }
     }
 }

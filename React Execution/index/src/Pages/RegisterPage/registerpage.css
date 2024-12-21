@@ -1,0 +1,15 @@
+.registerPageForm
+{
+    background-color: #3F4F57;
+    height: 1000px;
+}
+
+.registerPageForm .registerForm
+{
+    background-color: white;
+    height: 98%;
+    width: 75%;
+    border: 2px solid black;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 0.193);
+}

@@ -27,6 +27,16 @@ namespace MusicMarket.API
             services.AddControllers();
             services.AddSGService();
 
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(policy =>
+                {
+                    policy.AllowAnyMethod();
+                    policy.AllowAnyOrigin();
+                    policy.AllowAnyHeader();
+                });
+            });
+
             services.AddDBService(Configuration);
 
             services.AddAppServices();
@@ -52,6 +62,8 @@ namespace MusicMarket.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthentication();
             app.UseAuthorization();

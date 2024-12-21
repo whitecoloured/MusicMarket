@@ -69,3 +69,4 @@ C:\Users\Юрий\Desktop\рофлокоды\MusicMarket\MusicMarketServer\Music
 C:\Users\Юрий\Desktop\рофлокоды\MusicMarket\MusicMarketServer\MusicMarket.Infrastructure\obj\Debug\net5.0\MusicMarket.Infrastructure.genruntimeconfig.cache
 C:\Users\Юрий\Desktop\рофлокоды\MusicMarket\MusicMarketServer\MusicMarket.Infrastructure\obj\Debug\net5.0\MusicMar.692CD7F9.Up2Date
 C:\Users\Юрий\Desktop\рофлокоды\MusicMarket\MusicMarketServer\MusicMarket.Infrastructure\obj\Debug\net5.0\refint\MusicMarket.Infrastructure.dll
+C:\Users\Юрий\Desktop\рофлокоды\MusicMarket\MusicMarketServer\MusicMarket.Infrastructure\obj\Debug\net5.0\MusicMarket.Infrastructure.sourcelink.json

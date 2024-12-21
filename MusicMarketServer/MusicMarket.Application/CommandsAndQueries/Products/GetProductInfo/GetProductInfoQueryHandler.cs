@@ -19,13 +19,7 @@ namespace MusicMarket.Application.CommandsAndQueries.Products.GetProductInfo
         }
         public async Task<GetProductInfoResponse> Handle(GetProductInfoQuery request, CancellationToken cancellationToken)
         {
-            var product = await _repo.GetCertainProductByIDAsNoTracking(request.ID);
-
-            if (product is null)
-            {
-                throw new NotFoundException("The product you are looking for doesn't exist");
-            }
-
+            var product = await _repo.GetCertainProductByIDAsNoTracking(request.ID) ?? throw new NotFoundException("The product you are looking for doesn't exist");
             var data = _mapper.Map<GetProductInfoResponse>(product);
 
             return data;

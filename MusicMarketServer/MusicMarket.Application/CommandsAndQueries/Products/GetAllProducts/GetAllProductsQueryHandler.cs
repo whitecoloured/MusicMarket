@@ -22,19 +22,24 @@ namespace MusicMarket.Application.CommandsAndQueries.Products.GetAllProducts
         {
             var queryableData = _repo.GetAllProducts();
 
-            if (request.BrandID is not null)
+            if (!string.IsNullOrWhiteSpace(request.SearchName))
             {
-                queryableData = _repo.GetFilteredByBrandProducts(queryableData, request.BrandID.Value);
+                queryableData = _repo.GetFilteredBySearchNameProducts(queryableData, request.SearchName);
             }
 
-            if (request.Category is not null)
+            if (request.BrandIDs.Any())
             {
-                queryableData = _repo.GetFilteredByCategoryProducts(queryableData, request.Category.Value);
+                queryableData = _repo.GetFilteredByBrandProducts(queryableData, request.BrandIDs);
             }
 
-            if (request.Prices is not null)
+            if (request.Categories.Any())
             {
-                queryableData = _repo.GetFilteredByPriceRangeProducts(queryableData, request.Prices.Value.Item1, request.Prices.Value.Item2);
+                queryableData = _repo.GetFilteredByCategoryProducts(queryableData, request.Categories);
+            }
+
+            if (request.FirstPrice is not null && request.SecondPrice is not null)
+            {
+                queryableData = _repo.GetFilteredByPriceRangeProducts(queryableData, request.FirstPrice, request.SecondPrice);
             }
 
             if (!string.IsNullOrWhiteSpace(request.SortItem))

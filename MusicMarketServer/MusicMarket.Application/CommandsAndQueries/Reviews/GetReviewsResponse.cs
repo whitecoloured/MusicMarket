@@ -1,7 +1,7 @@
 ﻿using MusicMarket.Core.Models;
 using System;
 
-namespace MusicMarket.Application.CommandsAndQueries.Reviews.GetReviews
+namespace MusicMarket.Application.CommandsAndQueries.Reviews
 {
     public class GetReviewsResponse
     {

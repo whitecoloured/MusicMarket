@@ -16,5 +16,6 @@ namespace MusicMarket.Infrastructure.Repositories.Interfaces
         Task AddOrder(Order order);
 
         Task DeleteOrder(Order order);
+
     }
 }

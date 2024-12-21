@@ -1,0 +1,15 @@
+.loginPageForm
+{
+    background-color: #3F4F57;
+    height: 650px;
+}
+
+.loginPageForm .loginForm
+{
+    background-color: white;
+    height: 85%;
+    width: 75%;
+    border: 2px solid black;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 0.193);
+}

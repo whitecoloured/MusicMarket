@@ -20,8 +20,9 @@ namespace MusicMarket.API.Controllers
         }
         [HttpGet]
         [Route("GetAllBrands")]
-        public async Task<IActionResult> GetAllBrands([FromQuery]GetAllBrandsQuery query)
+        public async Task<IActionResult> GetAllBrands()
         {
+            GetAllBrandsQuery query = new();
             var data = await _mediator.Send(query);
             return Ok(data);
         }

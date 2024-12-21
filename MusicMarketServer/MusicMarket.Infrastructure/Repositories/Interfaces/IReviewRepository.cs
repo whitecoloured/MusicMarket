@@ -14,9 +14,10 @@ namespace MusicMarket.Infrastructure.Repositories.Interfaces
 
         Task<List<Review>> GetConvertedToListReviews(IQueryable<Review> reviews);
 
+        Task<List<Review>> GetAllReviewsAsList(Guid ProductID);
+
         Task<Review> GetReviewByID(Guid ReviewID);
 
-        Task<Review> GetLastUsersReview(Guid UserID);
 
         Task<List<Review>> GetAllUsersReviews(Guid UserID);
 

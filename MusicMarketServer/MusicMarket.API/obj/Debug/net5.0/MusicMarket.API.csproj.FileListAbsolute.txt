@@ -91,3 +91,4 @@ C:\Users\Юрий\Desktop\рофлокоды\MusicMarket\MusicMarketServer\Music
 C:\Users\Юрий\Desktop\рофлокоды\MusicMarket\MusicMarketServer\MusicMarket.API\obj\Debug\net5.0\MusicMar.EF2F9841.Up2Date
 C:\Users\Юрий\Desktop\рофлокоды\MusicMarket\MusicMarketServer\MusicMarket.API\obj\Debug\net5.0\refint\MusicMarket.API.dll
 C:\Users\Юрий\Desktop\рофлокоды\MusicMarket\MusicMarketServer\MusicMarket.API\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Юрий\Desktop\рофлокоды\MusicMarket\MusicMarketServer\MusicMarket.API\obj\Debug\net5.0\MusicMarket.API.sourcelink.json

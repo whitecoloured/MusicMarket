@@ -79,3 +79,4 @@ C:\Users\Юрий\Desktop\рофлокоды\MusicMarket\MusicMarketServer\Music
 C:\Users\Юрий\Desktop\рофлокоды\MusicMarket\MusicMarketServer\MusicMarket.Application\bin\Debug\net5.0\MusicMarket.Infrastructure.pdb
 C:\Users\Юрий\Desktop\рофлокоды\MusicMarket\MusicMarketServer\MusicMarket.Application\obj\Debug\net5.0\MusicMar.ADCB87C6.Up2Date
 C:\Users\Юрий\Desktop\рофлокоды\MusicMarket\MusicMarketServer\MusicMarket.Application\obj\Debug\net5.0\refint\MusicMarket.Application.dll
+C:\Users\Юрий\Desktop\рофлокоды\MusicMarket\MusicMarketServer\MusicMarket.Application\obj\Debug\net5.0\MusicMarket.Application.sourcelink.json
