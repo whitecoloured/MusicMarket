@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MusicMarket.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1677da1bad79a03dbb6d7b784f407913678a0ffe")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+388f5de803b924807d2c864d20ac49c0707fa2e6")]
 [assembly: System.Reflection.AssemblyProductAttribute("MusicMarket.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MusicMarket.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

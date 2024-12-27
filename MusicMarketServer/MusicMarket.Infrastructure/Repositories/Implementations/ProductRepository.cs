@@ -90,8 +90,8 @@ namespace MusicMarket.Infrastructure.Repositories.Implementations
         public IQueryable<Product> GetProductsByPage(IQueryable<Product> products, int page)
         {
             return products
-                    .Skip((page - 1) * 15)
-                    .Take(15);
+                    .Skip((page - 1) * 16)
+                    .Take(16);
         }
 
         public IQueryable<Product> GetSortedProducts(IQueryable<Product> products, bool OrderByAsc, string SortItem)
@@ -112,7 +112,7 @@ namespace MusicMarket.Infrastructure.Repositories.Implementations
 
         public IQueryable<Product> GetFilteredBySearchNameProducts(IQueryable<Product> products, string searchName)
         {
-            return products.Where(p=> p.Name.ToLower()==searchName.ToLower());
+            return products.Where(p=> p.Name.ToLower().Contains(searchName.ToLower()));
         }
     }
 }

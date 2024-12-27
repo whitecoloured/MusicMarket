@@ -19,9 +19,8 @@ namespace MusicMarket.Application.DI
             services.AddScoped<IValidator<Review>, ReviewValidator>();
             services.AddScoped<IValidator<User>, UserValidator>();
 
-            /*services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());*/
             services.AddMediatR(Assembly.GetExecutingAssembly());
-            services.AddAutoMapper(typeof(BrandMapperProfile), typeof(OrdersMapperProfile), typeof(ProductMapperProfile), typeof(ReviewMapperProfile), typeof(UserMappingProfile));
+            services.AddAutoMapper(typeof(BrandMapperProfile), typeof(OrdersMapperProfile), typeof(ProductMapperProfile), typeof(ReviewMapperProfile), typeof(UserMappingProfile), typeof(CartItemMapperProfile));
 
             return services;
 

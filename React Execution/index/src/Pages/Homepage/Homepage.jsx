@@ -10,11 +10,19 @@ function Homepage()
     {
         setHeaderElem(document.querySelector('header'))
         headerElem&&headerElem.classList.add('nobg')
-    },[!headerElem])
+    },[headerElem==null])
     
-    document.body.style.backgroundImage = "url(" + HomePageBG + ")";
+    document.body.style.backgroundImage = `url(${HomePageBG})`;
     document.body.style.backgroundSize='cover'
     document.body.style.backgroundRepeat='no-repeat'
+
+    function onCatalogueButtonClick()
+    {
+        headerElem.classList.remove('nobg')
+        document.body.style.backgroundImage = "none";
+        document.body.style.backgroundSize='none'
+        document.body.style.backgroundRepeat='none'
+    }
     return(
         <>
             <div style={{height:'100px'}}>
@@ -26,7 +34,7 @@ function Homepage()
                 </Text>
             </Center>
             <Center h={'200px'}>
-                <Button size={'2xl'} bgColor={'#2287B5'} w={'25%'}>
+                <Button size={'2xl'} bgColor={'#2287B5'} w={'25%'} onClick={()=> onCatalogueButtonClick()}>
                     Перейти в каталог
                 </Button>
             </Center>

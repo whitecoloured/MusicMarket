@@ -3,12 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\\u042E\u0440\u0438\u0439\\Desktop\\\u0440\u043E\u0444\u043B\u043E\u043A\u043E\u0434\u044B\\MusicMarket\\MusicMarketServer\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BC77BF0D-86D3-483D-A101-9D083BCD3266}|MusicMarket.Application\\MusicMarket.Application.csproj|c:\\users\\\u044E\u0440\u0438\u0439\\desktop\\\u0440\u043E\u0444\u043B\u043E\u043A\u043E\u0434\u044B\\musicmarket\\musicmarketserver\\musicmarket.application\\commandsandqueries\\products\\getproductinfo\\getproductinfoqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BC77BF0D-86D3-483D-A101-9D083BCD3266}|MusicMarket.Application\\MusicMarket.Application.csproj|solutionrelative:musicmarket.application\\commandsandqueries\\products\\getproductinfo\\getproductinfoqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{415F74F9-A342-4237-93BA-DB6AE767D406}|MusicMarket.Infrastructure\\MusicMarket.Infrastructure.csproj|c:\\users\\\u044E\u0440\u0438\u0439\\desktop\\\u0440\u043E\u0444\u043B\u043E\u043A\u043E\u0434\u044B\\musicmarket\\musicmarketserver\\musicmarket.infrastructure\\repositories\\implementations\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{415F74F9-A342-4237-93BA-DB6AE767D406}|MusicMarket.Infrastructure\\MusicMarket.Infrastructure.csproj|solutionrelative:musicmarket.infrastructure\\repositories\\implementations\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC77BF0D-86D3-483D-A101-9D083BCD3266}|MusicMarket.Application\\MusicMarket.Application.csproj|c:\\users\\\u044E\u0440\u0438\u0439\\desktop\\\u0440\u043E\u0444\u043B\u043E\u043A\u043E\u0434\u044B\\musicmarket\\musicmarketserver\\musicmarket.application\\commandsandqueries\\products\\getallproductsadmin\\getallproductsadminqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC77BF0D-86D3-483D-A101-9D083BCD3266}|MusicMarket.Application\\MusicMarket.Application.csproj|solutionrelative:musicmarket.application\\commandsandqueries\\products\\getallproductsadmin\\getallproductsadminqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{073452E4-8C5B-47AE-9A03-0C4FB5E37AC7}|MusicMarket.API\\MusicMarket.API.csproj|c:\\users\\\u044E\u0440\u0438\u0439\\desktop\\\u0440\u043E\u0444\u043B\u043E\u043A\u043E\u0434\u044B\\musicmarket\\musicmarketserver\\musicmarket.api\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{073452E4-8C5B-47AE-9A03-0C4FB5E37AC7}|MusicMarket.API\\MusicMarket.API.csproj|solutionrelative:musicmarket.api\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC77BF0D-86D3-483D-A101-9D083BCD3266}|MusicMarket.Application\\MusicMarket.Application.csproj|c:\\users\\\u044E\u0440\u0438\u0439\\desktop\\\u0440\u043E\u0444\u043B\u043E\u043A\u043E\u0434\u044B\\musicmarket\\musicmarketserver\\musicmarket.application\\commandsandqueries\\products\\getallproducts\\responses\\getallproductsresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC77BF0D-86D3-483D-A101-9D083BCD3266}|MusicMarket.Application\\MusicMarket.Application.csproj|solutionrelative:musicmarket.application\\commandsandqueries\\products\\getallproducts\\responses\\getallproductsresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC77BF0D-86D3-483D-A101-9D083BCD3266}|MusicMarket.Application\\MusicMarket.Application.csproj|c:\\users\\\u044E\u0440\u0438\u0439\\desktop\\\u0440\u043E\u0444\u043B\u043E\u043A\u043E\u0434\u044B\\musicmarket\\musicmarketserver\\musicmarket.application\\mapping\\productmapperprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC77BF0D-86D3-483D-A101-9D083BCD3266}|MusicMarket.Application\\MusicMarket.Application.csproj|solutionrelative:musicmarket.application\\mapping\\productmapperprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,32 +30,71 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "GetProductInfoQueryHandler.cs",
-              "DocumentMoniker": "C:\\Users\\\u042E\u0440\u0438\u0439\\Desktop\\\u0440\u043E\u0444\u043B\u043E\u043A\u043E\u0434\u044B\\MusicMarket\\MusicMarketServer\\MusicMarket.Application\\CommandsAndQueries\\Products\\GetProductInfo\\GetProductInfoQueryHandler.cs",
-              "RelativeDocumentMoniker": "MusicMarket.Application\\CommandsAndQueries\\Products\\GetProductInfo\\GetProductInfoQueryHandler.cs",
-              "ToolTip": "C:\\Users\\\u042E\u0440\u0438\u0439\\Desktop\\\u0440\u043E\u0444\u043B\u043E\u043A\u043E\u0434\u044B\\MusicMarket\\MusicMarketServer\\MusicMarket.Application\\CommandsAndQueries\\Products\\GetProductInfo\\GetProductInfoQueryHandler.cs",
-              "RelativeToolTip": "MusicMarket.Application\\CommandsAndQueries\\Products\\GetProductInfo\\GetProductInfoQueryHandler.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "ProductMapperProfile.cs",
+              "DocumentMoniker": "C:\\Users\\\u042E\u0440\u0438\u0439\\Desktop\\\u0440\u043E\u0444\u043B\u043E\u043A\u043E\u0434\u044B\\MusicMarket\\MusicMarketServer\\MusicMarket.Application\\Mapping\\ProductMapperProfile.cs",
+              "RelativeDocumentMoniker": "MusicMarket.Application\\Mapping\\ProductMapperProfile.cs",
+              "ToolTip": "C:\\Users\\\u042E\u0440\u0438\u0439\\Desktop\\\u0440\u043E\u0444\u043B\u043E\u043A\u043E\u0434\u044B\\MusicMarket\\MusicMarketServer\\MusicMarket.Application\\Mapping\\ProductMapperProfile.cs",
+              "RelativeToolTip": "MusicMarket.Application\\Mapping\\ProductMapperProfile.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAQwCkAAABXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-19T09:44:22.586Z",
+              "WhenOpened": "2024-12-25T14:17:06.719Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ProductRepository.cs",
+              "DocumentMoniker": "C:\\Users\\\u042E\u0440\u0438\u0439\\Desktop\\\u0440\u043E\u0444\u043B\u043E\u043A\u043E\u0434\u044B\\MusicMarket\\MusicMarketServer\\MusicMarket.Infrastructure\\Repositories\\Implementations\\ProductRepository.cs",
+              "RelativeDocumentMoniker": "MusicMarket.Infrastructure\\Repositories\\Implementations\\ProductRepository.cs",
+              "ToolTip": "C:\\Users\\\u042E\u0440\u0438\u0439\\Desktop\\\u0440\u043E\u0444\u043B\u043E\u043A\u043E\u0434\u044B\\MusicMarket\\MusicMarketServer\\MusicMarket.Infrastructure\\Repositories\\Implementations\\ProductRepository.cs",
+              "RelativeToolTip": "MusicMarket.Infrastructure\\Repositories\\Implementations\\ProductRepository.cs",
+              "ViewState": "AgIAAF0AAAAAAAAAAAAAAHIAAABVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-25T14:14:29.995Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "GetAllProductsAdminQueryHandler.cs",
+              "DocumentMoniker": "C:\\Users\\\u042E\u0440\u0438\u0439\\Desktop\\\u0440\u043E\u0444\u043B\u043E\u043A\u043E\u0434\u044B\\MusicMarket\\MusicMarketServer\\MusicMarket.Application\\CommandsAndQueries\\Products\\GetAllProductsAdmin\\GetAllProductsAdminQueryHandler.cs",
+              "RelativeDocumentMoniker": "MusicMarket.Application\\CommandsAndQueries\\Products\\GetAllProductsAdmin\\GetAllProductsAdminQueryHandler.cs",
+              "ToolTip": "C:\\Users\\\u042E\u0440\u0438\u0439\\Desktop\\\u0440\u043E\u0444\u043B\u043E\u043A\u043E\u0434\u044B\\MusicMarket\\MusicMarketServer\\MusicMarket.Application\\CommandsAndQueries\\Products\\GetAllProductsAdmin\\GetAllProductsAdminQueryHandler.cs",
+              "RelativeToolTip": "MusicMarket.Application\\CommandsAndQueries\\Products\\GetAllProductsAdmin\\GetAllProductsAdminQueryHandler.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAACAAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-25T14:12:29.711Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "GetAllProductsResponse.cs",
+              "DocumentMoniker": "C:\\Users\\\u042E\u0440\u0438\u0439\\Desktop\\\u0440\u043E\u0444\u043B\u043E\u043A\u043E\u0434\u044B\\MusicMarket\\MusicMarketServer\\MusicMarket.Application\\CommandsAndQueries\\Products\\GetAllProducts\\Responses\\GetAllProductsResponse.cs",
+              "RelativeDocumentMoniker": "MusicMarket.Application\\CommandsAndQueries\\Products\\GetAllProducts\\Responses\\GetAllProductsResponse.cs",
+              "ToolTip": "C:\\Users\\\u042E\u0440\u0438\u0439\\Desktop\\\u0440\u043E\u0444\u043B\u043E\u043A\u043E\u0434\u044B\\MusicMarket\\MusicMarketServer\\MusicMarket.Application\\CommandsAndQueries\\Products\\GetAllProducts\\Responses\\GetAllProductsResponse.cs",
+              "RelativeToolTip": "MusicMarket.Application\\CommandsAndQueries\\Products\\GetAllProducts\\Responses\\GetAllProductsResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-25T14:10:27.376Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "ProductsController.cs",
               "DocumentMoniker": "C:\\Users\\\u042E\u0440\u0438\u0439\\Desktop\\\u0440\u043E\u0444\u043B\u043E\u043A\u043E\u0434\u044B\\MusicMarket\\MusicMarketServer\\MusicMarket.API\\Controllers\\ProductsController.cs",
               "RelativeDocumentMoniker": "MusicMarket.API\\Controllers\\ProductsController.cs",
               "ToolTip": "C:\\Users\\\u042E\u0440\u0438\u0439\\Desktop\\\u0440\u043E\u0444\u043B\u043E\u043A\u043E\u0434\u044B\\MusicMarket\\MusicMarketServer\\MusicMarket.API\\Controllers\\ProductsController.cs",
               "RelativeToolTip": "MusicMarket.API\\Controllers\\ProductsController.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAABsAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAABYAAAAAAAAAAAAAAC8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-18T12:09:08.681Z",
+              "WhenOpened": "2024-12-25T13:07:58.541Z",
               "EditorCaption": ""
             }
           ]

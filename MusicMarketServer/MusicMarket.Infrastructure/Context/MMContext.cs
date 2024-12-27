@@ -12,6 +12,7 @@ namespace MusicMarket.Infrastructure.Context
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Review> Reviews { get; set; }
+        public DbSet<Cart> Carts { get; set; }
 
         public MMContext(DbContextOptions<MMContext>options): base(options)
         {
@@ -26,6 +27,7 @@ namespace MusicMarket.Infrastructure.Context
             modelBuilder.ApplyConfiguration(new ProductConfig());
             modelBuilder.ApplyConfiguration(new ReviewConfig());
             modelBuilder.ApplyConfiguration(new UserConfig());
+            modelBuilder.ApplyConfiguration(new CartConfig());
         }
 
     }

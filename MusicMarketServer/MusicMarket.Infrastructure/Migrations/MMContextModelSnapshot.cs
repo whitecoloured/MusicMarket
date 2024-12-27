@@ -34,6 +34,27 @@ namespace MusicMarket.Infrastructure.Migrations
                     b.ToTable("Brands");
                 });
 
+            modelBuilder.Entity("MusicMarket.Core.Models.Cart", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ProductID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("UserID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductID");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("Carts");
+                });
+
             modelBuilder.Entity("MusicMarket.Core.Models.Order", b =>
                 {
                     b.Property<Guid>("Id")
@@ -162,6 +183,21 @@ namespace MusicMarket.Infrastructure.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("MusicMarket.Core.Models.Cart", b =>
+                {
+                    b.HasOne("MusicMarket.Core.Models.Product", "Product")
+                        .WithMany("CartItems")
+                        .HasForeignKey("ProductID");
+
+                    b.HasOne("MusicMarket.Core.Models.User", "User")
+                        .WithMany("CartItems")
+                        .HasForeignKey("UserID");
+
+                    b.Navigation("Product");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("MusicMarket.Core.Models.Order", b =>
                 {
                     b.HasOne("MusicMarket.Core.Models.Product", "Product")
@@ -238,6 +274,8 @@ namespace MusicMarket.Infrastructure.Migrations
 
             modelBuilder.Entity("MusicMarket.Core.Models.Product", b =>
                 {
+                    b.Navigation("CartItems");
+
                     b.Navigation("Orders");
 
                     b.Navigation("Reviews");
@@ -245,6 +283,8 @@ namespace MusicMarket.Infrastructure.Migrations
 
             modelBuilder.Entity("MusicMarket.Core.Models.User", b =>
                 {
+                    b.Navigation("CartItems");
+
                     b.Navigation("Orders");
 
                     b.Navigation("Reviews");

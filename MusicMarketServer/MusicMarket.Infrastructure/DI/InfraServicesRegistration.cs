@@ -13,6 +13,7 @@ namespace MusicMarket.Infrastructure.DI
             services.AddScoped<IReviewRepository, ReviewRepository>();
             services.AddScoped<IBrandRepository, BrandRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<ICartRepository, CartRepository>();
 
             return services;
         }

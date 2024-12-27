@@ -1,4 +1,4 @@
-import { Card, Center, Container, Image, Stack, Text, Flex, Button } from "@chakra-ui/react";
+import { Center, Container,Stack, Text, Button } from "@chakra-ui/react";
 import "./profile.css"
 import ReviewCardSecondVariant from "../../components/ui/reviewcards/reviewcardsecondvariant";
 import OrderCard from "../../components/ui/ordercard";

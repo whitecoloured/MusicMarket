@@ -9,6 +9,7 @@ using MusicMarket.Application.CommandsAndQueries.Products.GetProductInfo;
 using MusicMarket.Application.CommandsAndQueries.Products.DeleteProduct;
 using System.Threading;
 using Microsoft.AspNetCore.Authorization;
+using MusicMarket.Application.CommandsAndQueries.Products.GetAllProductsAdmin;
 
 namespace MusicMarket.API.Controllers
 {
@@ -35,6 +36,16 @@ namespace MusicMarket.API.Controllers
             var data = await _mediator.Send(query);
             return Ok(data);
         }
+
+        [HttpGet]
+        [Route("GetProductsAdmin")]
+        [Authorize("AdminPolicy")]
+        public async Task<IActionResult> GetAllProductsAdmin([FromQuery] GetAllProductsAdminQuery query)
+        {
+            var data= await _mediator.Send(query);
+            return Ok(data);
+        }
+
         [HttpPost]
         [Route("AddProduct")]
         [Authorize("AdminPolicy")]

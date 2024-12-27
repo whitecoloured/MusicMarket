@@ -1,4 +1,4 @@
-import { Center, Stack, Text, Flex, Box, Input, Button } from '@chakra-ui/react';
+import { Center, Stack, Text, Flex, Input, Button } from '@chakra-ui/react';
 import './loginpage.css'
 
 function LoginPage()

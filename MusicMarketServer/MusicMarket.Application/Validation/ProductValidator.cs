@@ -21,6 +21,15 @@ namespace MusicMarket.Application.Validation
             RuleFor(p => p.Category).NotNull()
                 .WithMessage("You haven't put any of the categories!");
 
+            When(p => p.Characteristics.Count != 0, () =>
+            {
+                RuleForEach(p => p.Characteristics)
+                    .Must(p => p.Key.Trim() != "")
+                    .Must(p => p.Value.Trim() != "")
+                    .WithMessage("One or some of your keys or values aren't specified!");
+            });
+
+
         }
     }
 }

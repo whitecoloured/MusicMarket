@@ -6,12 +6,14 @@ import RegisterPage from "./Pages/RegisterPage/RegisterPage"
 import Catalogue from "./Pages/Catalogue/Catalogue"
 import CurrentProductInfo from "./Pages/CurrentProductInfo/CurrentProductInfo"
 import Profile from "./Pages/Profile/profile"
+import Cart from "./Pages/Cart/cart"
+import AdminPage from "./Pages/AdminPage/adminpage"
 
 function App() {
   return (
     <>
     <Header/>
-    <Profile/>
+    <AdminPage/>
     <Footer/>
     </>
   )
