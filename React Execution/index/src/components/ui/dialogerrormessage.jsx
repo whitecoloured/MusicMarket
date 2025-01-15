@@ -24,7 +24,7 @@ function DialogErrorMessage({message, isOpen, toggleOpen})
                 </DialogBody>
                 <DialogFooter>
                     <DialogActionTrigger asChild>
-                        <Button variant={'subtle'} onClick={()=> toggleOpen(false)}>OK</Button>
+                        <Button colorPalette={'red'} onClick={()=> toggleOpen(false)}>OK!</Button>
                     </DialogActionTrigger>
                 </DialogFooter>
             </DialogContent>

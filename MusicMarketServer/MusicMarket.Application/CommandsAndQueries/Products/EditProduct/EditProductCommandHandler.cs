@@ -11,30 +11,33 @@ namespace MusicMarket.Application.CommandsAndQueries.Products.EditProduct
 {
     public class EditProductCommandHandler : IRequestHandler<EditProductCommand>
     {
-        private readonly IProductRepository _repo;
+        private readonly IProductRepository _productRepo;
+        private readonly IBrandRepository _brandRepo;
         private readonly IMapper _mapper;
         private readonly IValidator<Product> _validator;
-        public EditProductCommandHandler(IProductRepository repo, IMapper mapper, IValidator<Product> validator)
+        public EditProductCommandHandler(IProductRepository repo, IMapper mapper, IValidator<Product> validator, IBrandRepository brandRepo)
         {
-            _repo = repo;
+            _productRepo = repo;
             _mapper = mapper;
             _validator = validator;
+            _brandRepo = brandRepo;
         }
         public async Task<Unit> Handle(EditProductCommand request, CancellationToken cancellationToken)
         {
-            var product = await _repo.GetCertainProductByID(request.ProductID);
+            var brand=await _brandRepo.GetCertainBrandByID(request.Model.BrandID) ?? throw new NotFoundException("The brand hasn't been found!");
+            var product = await _productRepo.GetCertainProductByID(request.ProductID) ?? throw new NotFoundException("The product hasn't been found!");
             var newProduct = _mapper.Map<Product>(request.Model);
-            newProduct.Brand = product.Brand;
+            newProduct.Brand = brand;
             var modelState = await _validator.ValidateAsync(newProduct, cancellationToken);
             if (!modelState.IsValid)
             {
                 throw new BadRequestException(string.Join('\n', modelState.Errors));
             }
-            /*if (await _repo.HasTheProduct(newProduct))
+            if (await _productRepo.HasTheProduct(newProduct, product.Id))
             {
                 throw new BadRequestException("The product already exists!");
-            }*/
-            await _repo.EditProductInfo(product, newProduct);
+            }
+            await _productRepo.EditProductInfo(product, newProduct);
             return Unit.Value;
         }
     }

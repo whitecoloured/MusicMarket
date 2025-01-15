@@ -10,6 +10,7 @@ using MusicMarket.Application.CommandsAndQueries.Products.DeleteProduct;
 using System.Threading;
 using Microsoft.AspNetCore.Authorization;
 using MusicMarket.Application.CommandsAndQueries.Products.GetAllProductsAdmin;
+using MusicMarket.Application.CommandsAndQueries.Products.GetProductInfoAdmin;
 
 namespace MusicMarket.API.Controllers
 {
@@ -32,6 +33,15 @@ namespace MusicMarket.API.Controllers
         [HttpGet]
         [Route("GetProductInfo")]
         public async Task<IActionResult> GetProductInfo([FromQuery]GetProductInfoQuery query)
+        {
+            var data = await _mediator.Send(query);
+            return Ok(data);
+        }
+
+        [HttpGet]
+        [Route("GetProductInfoAdmin")]
+        [Authorize("AdminPolicy")]
+        public async Task<IActionResult> GetProductInfoAdmin([FromQuery]GetProductInfoAdminQuery query)
         {
             var data = await _mediator.Send(query);
             return Ok(data);

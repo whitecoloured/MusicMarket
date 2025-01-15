@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
     DialogBody,
     DialogTrigger,
@@ -12,18 +12,42 @@ import {
 
 import { Button, Flex, Input, Text } from "@chakra-ui/react"
 import DialogMessage from "../components/ui/dialogmessage";
+import { addBrand } from "../../api";
+import DialogErrorMessage from "../components/ui/dialogerrormessage";
 
-function AddBrandDialogPage({isOpen, setIsOpen})
+function AddBrandDialogPage({isOpen, setIsOpen, onRefresh})
 {
 
     const[brandInput, setBrandInput]=useState('');
 
     const [messageOpen, setMessageOpen]=useState(false);
+    const [errorMessageOpen, setErrorMessageOpen]=useState(false);
+
+    const dialogErrorMessage=useRef("");
 
     function onDialogPageClose()
     {
         setBrandInput('');
         setIsOpen(false);
+        onRefresh();
+    }
+
+    async function onAddSubmit()
+    {
+        const brandObj=
+        {
+            brandName:brandInput
+        }
+        const response=await addBrand(brandObj);
+        if (response.status===200)
+        {
+            setMessageOpen(true);
+        }
+        else
+        {
+            dialogErrorMessage.current=response?.message;
+            setErrorMessageOpen(true);
+        }
     }
     return(
         <DialogRoot open={isOpen} placement={'center'}>
@@ -44,12 +68,16 @@ function AddBrandDialogPage({isOpen, setIsOpen})
                     </Flex>
                 </DialogBody>
                 <DialogFooter>
-                    <Button onClick={()=> setMessageOpen(true)}>Подтвердить</Button>
+                    <Button onClick={()=> onAddSubmit()}>Подтвердить</Button>
                 </DialogFooter>
                 <DialogMessage
                 isOpen={messageOpen}
                 toggleOpen={setMessageOpen}
                 message={"Бренд был успешно добавлен"}/>
+                <DialogErrorMessage
+                isOpen={errorMessageOpen}
+                toggleOpen={setErrorMessageOpen}
+                message={dialogErrorMessage?.current}/>
             </DialogContent>
         </DialogRoot>
     )

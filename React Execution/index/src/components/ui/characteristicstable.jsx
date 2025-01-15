@@ -1,6 +1,6 @@
 import { Table } from "@chakra-ui/react"
 
-function CharacteristicsTable()
+function CharacteristicsTable({characteristics})
 {
     return(
         <Table.Root marginBottom={'3%'} showColumnBorder>
@@ -11,18 +11,12 @@ function CharacteristicsTable()
                 </Table.Row>
             </Table.Header>
             <Table.Body>
-                <Table.Row>
-                    <Table.Cell>Наименование 1</Table.Cell>
-                    <Table.Cell>Описание 1</Table.Cell>
+                {characteristics?.map((char, index)=>
+                <Table.Row key={index}>
+                    <Table.Cell>{char?.key}</Table.Cell>
+                    <Table.Cell>{char?.value}</Table.Cell>
                 </Table.Row>
-                <Table.Row>
-                    <Table.Cell>Наименование 2</Table.Cell>
-                    <Table.Cell>Описание 2</Table.Cell>
-                </Table.Row>
-                <Table.Row>
-                    <Table.Cell>Наименование 3</Table.Cell>
-                    <Table.Cell>Описание 3</Table.Cell>
-                </Table.Row>
+                )}
             </Table.Body>
         </Table.Root>
     )

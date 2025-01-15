@@ -90,8 +90,8 @@ namespace MusicMarket.Infrastructure.Repositories.Implementations
         public IQueryable<Product> GetProductsByPage(IQueryable<Product> products, int page)
         {
             return products
-                    .Skip((page - 1) * 16)
-                    .Take(16);
+                    .Skip((page - 1) * 12)
+                    .Take(12);
         }
 
         public IQueryable<Product> GetSortedProducts(IQueryable<Product> products, bool OrderByAsc, string SortItem)
@@ -105,9 +105,9 @@ namespace MusicMarket.Infrastructure.Repositories.Implementations
             return sortedData;
         }
 
-        public async Task<bool> HasTheProduct(Product product)
+        public async Task<bool> HasTheProduct(Product product,Guid ProductID)
         {
-            return await _context.Products.AnyAsync(p => p.Name==product.Name && p.Id!=product.Id);
+            return await _context.Products.AnyAsync(p => p.Name.Replace(" ","").ToLower()==product.Name.Replace(" ", "").ToLower() && p.Id!=ProductID);
         }
 
         public IQueryable<Product> GetFilteredBySearchNameProducts(IQueryable<Product> products, string searchName)

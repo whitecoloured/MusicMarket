@@ -1,12 +1,83 @@
-import { Box, Center,Flex, Input, Stack, Text } from '@chakra-ui/react';
+import { Box, Center,Flex, Input, Stack, Text, CheckboxGroup } from '@chakra-ui/react';
 import { Checkbox } from '../../components/ui/checkbox';
 import './catalogue.css'
 import ProductItem from '../../components/ui/productitem';
 import SquarePage from '../../components/ui/squarepage';
-import Select from '../../components/ui/select';
+import { useEffect, useRef, useState } from 'react';
+import { getBrands, getProducts, addProductToCart } from '../../../api';
+import DialogMessage from '../../components/ui/dialogmessage';
+import DialogErrorMessage from '../../components/ui/dialogerrormessage';
 
 function Catalogue()
 {
+    const[filters, setFilters]=useState(
+        {
+            searchName:'',
+            brandIDs:[],
+            categories:[],
+            firstPrice:null,
+            secondPrice:null,
+            sortItem:null,
+            orderByAsc:true,
+            page:1
+        }
+    )
+
+    const [products, setProducts]=useState([]);
+    const [brands, setBrands]=useState([]);
+    const productAmount=useRef(0);
+
+    const pagesAmount=Math.ceil(productAmount.current/12);
+
+    const [messageOpen, setMessageOpen]=useState(false);
+    const [errorMessageOpen, setErrorMessageOpen]=useState(false);
+
+    const dialogMessage=useRef("");
+    const dialogErrorMessage=useRef("");
+
+    useEffect(()=>
+    {
+        const fetchData=async()=>
+        {
+            const productsData=await getProducts(filters);
+            setProducts(productsData?.products);
+            productAmount.current=productsData?.productsAmount;
+        }
+        fetchData();
+    },[filters])
+
+    useEffect(()=>
+    {
+        const fetchData=async()=>
+        {
+            const brandsData=await getBrands();
+            setBrands(brandsData);
+        }
+        fetchData();
+    },[])
+
+    function onSortChange(e)
+    {
+        const[OrderByAsc, SortItem]=e.target.value.split(',')
+        setFilters({...filters, sortItem: SortItem, orderByAsc: OrderByAsc});
+    }
+
+    async function onAddingToCart(id,name)
+    {
+        const response= await addProductToCart(id);
+        if (response.status===200)
+        {
+            dialogMessage.current=`Продукт ${name} был успешно добавлен в корзину!`
+            setMessageOpen(true);
+        }
+        else
+        {
+            dialogErrorMessage.current=response?.message;
+            setErrorMessageOpen(true);
+        }
+    }
+
+
     return(
         <div className="catalogueForm">
             <Flex>
@@ -17,12 +88,11 @@ function Catalogue()
                         </Text>
                     </Center>
                     <Center marginBottom={'2%'}>
-                        <Stack w={'85%'}>
-                            <Checkbox variant={'subtle'} colorPalette={'blue'}>Yamaha</Checkbox>
-                            <Checkbox variant={'subtle'} colorPalette={'blue'}>AKG</Checkbox>
-                            <Checkbox variant={'subtle'} colorPalette={'blue'}>ADAM</Checkbox>
-                            <Checkbox variant={'subtle'} colorPalette={'blue'}>JBL</Checkbox>
-                        </Stack>
+                        <CheckboxGroup value={filters.brandIDs} onValueChange={(e)=>setFilters({...filters, brandIDs: e})} w={'85%'}>
+                            {brands.map(brand=>
+                                <Checkbox key={brand.id} value={brand.id} variant={'subtle'} colorPalette={'blue'}>{brand.brandName}</Checkbox>
+                            )}
+                        </CheckboxGroup>
                     </Center>
                     <Center>
                         <Text fontSize={'30px'} fontWeight={'bolder'} fontFamily={'"Inter", sans-serif'}>
@@ -30,15 +100,15 @@ function Catalogue()
                         </Text>
                     </Center>
                     <Center marginBottom={'2%'}>
-                        <Stack w={'85%'}>
-                            <Checkbox variant={'subtle'} colorPalette={'blue'}>Акус. гитара</Checkbox>
-                            <Checkbox variant={'subtle'} colorPalette={'blue'}>Монитор</Checkbox>
-                            <Checkbox variant={'subtle'} colorPalette={'blue'}>Эл. гитара</Checkbox>
-                            <Checkbox variant={'subtle'} colorPalette={'blue'}>Клавиатура</Checkbox>
-                            <Checkbox variant={'subtle'} colorPalette={'blue'}>Звук. карта</Checkbox>
-                            <Checkbox variant={'subtle'} colorPalette={'blue'}>Пианино</Checkbox>
-                            <Checkbox variant={'subtle'} colorPalette={'blue'}>Наушники</Checkbox>
-                        </Stack>
+                        <CheckboxGroup value={filters.categories} onValueChange={(e)=> setFilters({...filters, categories:e})} w={'85%'}>
+                            <Checkbox value={0} variant={'subtle'} colorPalette={'blue'}>Акус. гитара</Checkbox>
+                            <Checkbox value={1} variant={'subtle'} colorPalette={'blue'}>Эл. гитара</Checkbox>
+                            <Checkbox value={2} variant={'subtle'} colorPalette={'blue'}>Пианино</Checkbox>
+                            <Checkbox value={3} variant={'subtle'} colorPalette={'blue'}>Звук. карта</Checkbox>
+                            <Checkbox value={4} variant={'subtle'} colorPalette={'blue'}>Клавиатура</Checkbox>
+                            <Checkbox value={5} variant={'subtle'} colorPalette={'blue'}>Монитор</Checkbox>
+                            <Checkbox value={6} variant={'subtle'} colorPalette={'blue'}>Наушники</Checkbox>
+                        </CheckboxGroup>
                     </Center>
                     <Center>
                         <Text fontSize={'30px'} fontWeight={'bolder'} fontFamily={'"Inter", sans-serif'}>
@@ -50,18 +120,18 @@ function Catalogue()
                             <Text fontSize={'15px'} fontWeight={'bolder'} fontFamily={'"Inter", sans-serif'}>
                                 От:
                             </Text>
-                            <Input w={'70%'} h={'25px'} backgroundColor={'#C3C3C3'}/>
+                            <Input type='number' step={0.01} onChange={(e)=> setFilters({...filters, firstPrice:e.target.value?Number.parseFloat(e.target.value):null})} w={'70%'} h={'25px'} backgroundColor={'#C3C3C3'}/>
                             <Text fontSize={'15px'} fontWeight={'bolder'} fontFamily={'"Inter", sans-serif'}>
                                 До:
                             </Text>
-                            <Input w={'70%'} h={'25px'} backgroundColor={'#C3C3C3'}/>
+                            <Input type='number' step={0.01} onChange={(e)=> setFilters({...filters, secondPrice:e.target.value?Number.parseFloat(e.target.value):null})} w={'70%'} h={'25px'} backgroundColor={'#C3C3C3'}/>
                         </Stack>
                     </Center>
                 </div>
                 <div className='secCol'>
                     <Center backgroundColor={'#48545B'} h={'70px'} marginBottom={'1.7%'}>
-                        <Input border={'none'} backgroundColor={'#A6BBC7'} w={'45%'} marginRight={'3%'} placeholder={'Поиск по названию..'}/>
-                        <Select style={{bgColor:'#A6BBC7', width:'45%', height:'40px'}}>
+                        <Input onChange={(e)=> setFilters({...filters, searchName:e.target.value})} border={'none'} backgroundColor={'#A6BBC7'} w={'45%'} marginRight={'3%'} placeholder={'Поиск по названию..'}/>
+                        <select onChange={(e)=> onSortChange(e)} style={{backgroundColor:'#A6BBC7', width:'45%', height:'40px', borderRadius:'10px 10px 10px 10px'}}>
                             <option value={[true, '']}>
                                 Сортировать по..
                             </option>
@@ -77,28 +147,39 @@ function Catalogue()
                             <option value={[false, 'name']}>
                                 Сортировать по имени {'(по убыванию)'}
                             </option>
-                        </Select>
+                        </select>
                     </Center>
                     <Center>
                         <Flex w={'95%'} flexWrap={'wrap'}>
-                            <ProductItem/>
-                            <ProductItem/>
-                            <ProductItem/>
-                            <ProductItem/>
-                            <ProductItem/>
-                            <ProductItem/>
-                            <ProductItem/>
-                            <ProductItem/>
+                            {products?.map(product=>
+                                <ProductItem 
+                                key={product?.id} 
+                                id={product?.id}
+                                name={product?.name} 
+                                price={product?.price} 
+                                imageURL={product?.imageURL} 
+                                brandName={product?.brandName}
+                                onAddingToCart={onAddingToCart}/>
+                            )}
                         </Flex>
                     </Center>
                 </div>
             </Flex>
             <Center h={'100px'}>
-                <SquarePage value={1}/>
-                <SquarePage value={2}/>
-                <SquarePage value={3}/>
-                <SquarePage value={4}/>
+                {Array(pagesAmount).fill(null).map((_, index)=>
+                    <SquarePage key={index} value={index+1} setPage={()=> setFilters({...filters, page:index+1})} />
+                )}
             </Center>
+
+            <DialogMessage
+            isOpen={messageOpen}
+            toggleOpen={setMessageOpen}
+            message={dialogMessage?.current}/>
+
+            <DialogErrorMessage
+            isOpen={errorMessageOpen}
+            toggleOpen={setErrorMessageOpen}
+            message={dialogErrorMessage?.current}/>
         </div>
     )
 }

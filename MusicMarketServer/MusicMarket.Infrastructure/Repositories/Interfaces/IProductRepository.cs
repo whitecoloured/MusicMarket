@@ -32,7 +32,7 @@ namespace MusicMarket.Infrastructure.Repositories.Interfaces
 
         Task EditProductInfo(Product product, Product newProduct);
 
-        Task<bool> HasTheProduct(Product product);
+        Task<bool> HasTheProduct(Product product, Guid ProductID);
 
 
     }

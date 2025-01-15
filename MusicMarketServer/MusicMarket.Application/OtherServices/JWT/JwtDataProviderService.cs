@@ -21,6 +21,7 @@ namespace MusicMarket.Application.OtherServices.JWT
 
         public static string GetUserRoleFromToken(KeyValuePair<string, StringValues> headerData)
         {
+
             var token = headerData.Value.ToString()["Bearer ".Length..];
 
             string role = new JwtSecurityTokenHandler().ReadJwtToken(token).Claims.FirstOrDefault(p => p.Type == "Role").Value;

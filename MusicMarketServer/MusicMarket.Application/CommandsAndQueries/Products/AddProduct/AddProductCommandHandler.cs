@@ -26,11 +26,7 @@ namespace MusicMarket.Application.CommandsAndQueries.Products.AddProduct
         }
         public async Task<Unit> Handle(AddProductCommand request, CancellationToken cancellationToken)
         {
-            var brand = await _brandRepo.GetCertainBrandByID(request.BrandID);
-            if (brand is null)
-            {
-                throw new NotFoundException("The brand hasn't been found!");
-            }
+            var brand = await _brandRepo.GetCertainBrandByID(request.Model.BrandID)?? throw new NotFoundException("The brand hasn't been found!");
             var product = _mapper.Map<Product>(request.Model);
             product.Brand = brand;
             var modelState = await _validator.ValidateAsync(product, cancellationToken);

@@ -30,6 +30,7 @@ namespace MusicMarket.Application.CommandsAndQueries.Users.Login
 
             string token = JwtTokenProviderService.GenerateToken(user);
 
+
             return token;
         }
     }

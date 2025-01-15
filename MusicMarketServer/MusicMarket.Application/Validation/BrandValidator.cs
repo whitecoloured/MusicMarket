@@ -8,9 +8,14 @@ namespace MusicMarket.Application.Validation
         public BrandValidator()
         {
             RuleFor(p => p.BrandName).NotEmpty()
-                .MaximumLength(50)
-                .Must(p => !p.Contains('\n'))
-                .WithMessage("You haven't set the brand name property or set it unproperly!");
+                .WithMessage("Your brand name must be filled!");
+
+            When(p => p.BrandName is not null, () =>
+                RuleFor(p=> p.BrandName)
+                    .MaximumLength(50)
+                    .Must(p => !p.Contains('\n'))
+                    .WithMessage("The brand name should have only under 50 characters!")
+            );
 
         }
     }

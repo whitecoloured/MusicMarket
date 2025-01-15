@@ -7,5 +7,13 @@ using System.Threading.Tasks;
 
 namespace MusicMarket.Application.CommandsAndQueries.Users.GetUserInfo
 {
-    public record GetUserInfoResponse(Guid ID, string Name, string Surname, string Login, string Email, Address Address);
+    public class GetUserInfoResponse
+    {
+        public Guid ID { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string Login { get; set; }
+        public string Email { get; set; }
+        public string Address { get; set; }
+    }
 }

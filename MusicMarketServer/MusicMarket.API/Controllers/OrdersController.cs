@@ -43,7 +43,7 @@ namespace MusicMarket.API.Controllers
 
         [HttpPost]
         [Route("AddOrder")]
-        public async Task<IActionResult> AddOrder(Guid ProductID)
+        public async Task<IActionResult> AddOrder([FromBody]Guid ProductID)
         {
             var HeaderData = Request.Headers.FirstOrDefault(x => x.Key == "Authorization");
             AddOrderCommand command = new(HeaderData, ProductID);

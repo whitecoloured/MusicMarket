@@ -46,7 +46,7 @@ namespace MusicMarket.API.Controllers
 
         [HttpDelete]
         [Route("DeleteCartItem")]
-        public async Task<IActionResult> DeleteCartItem(DeleteCartItemCommand command)
+        public async Task<IActionResult> DeleteCartItem([FromQuery]DeleteCartItemCommand command)
         {
             await _mediator.Send(command);
             return Ok();

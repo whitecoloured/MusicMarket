@@ -2,6 +2,7 @@
 using MediatR;
 using MusicMarket.Application.CommandsAndQueries.Products.GetAllProducts.Responses;
 using MusicMarket.Infrastructure.Repositories.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -27,14 +28,20 @@ namespace MusicMarket.Application.CommandsAndQueries.Products.GetAllProducts
                 queryableData = _repo.GetFilteredBySearchNameProducts(queryableData, request.SearchName);
             }
 
-            if (request.BrandIDs.Any())
+            if (request.BrandIDs is not null)
             {
-                queryableData = _repo.GetFilteredByBrandProducts(queryableData, request.BrandIDs);
+                if (request.BrandIDs.Any())
+                {
+                    queryableData = _repo.GetFilteredByBrandProducts(queryableData, request.BrandIDs);
+                }
             }
 
-            if (request.Categories.Any())
+            if (request.Categories is not null)
             {
-                queryableData = _repo.GetFilteredByCategoryProducts(queryableData, request.Categories);
+                if (request.Categories.Any())
+                {
+                    queryableData = _repo.GetFilteredByCategoryProducts(queryableData, request.Categories);
+                }
             }
 
             if (request.FirstPrice is not null && request.SecondPrice is not null)

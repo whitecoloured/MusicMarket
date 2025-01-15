@@ -1,17 +1,18 @@
-import { Card, Flex, Image, Stack, Text } from "@chakra-ui/react"
+import { Button, Card, Flex, Image, Stack, Text } from "@chakra-ui/react"
 
-function OrderCard()
+function OrderCard({id,name, orderDate, orderReceived, price, imageURL, setConfirmationOpen})
 {
     return(
         <Card.Root marginBottom={'1%'}>
             <Card.Body>
                 <Flex>
-                    <Image h={'30%'} w={'18%'} src="https://zm61.ru/upload/iblock/84b/srjklt20apje627nhctsvp8voy5oxppg.jpg" marginRight={'5%'}/>
+                    <Image w={'12%'} src={imageURL} marginRight={'5%'}/>
                     <Stack w={'67%'}>
-                        <Text fontWeight={'bold'} fontSize={'36px'}>ProductName</Text>
-                        <Text>Заказ оформлен: 12.12.2024</Text>
-                        <Text marginBottom={'3%'}>Заказ получен: 18.12.2024</Text>
-                        <Text fontSize={'20px'}>Цена: $999.99</Text>
+                        <Text fontWeight={'bold'} fontSize={'36px'} marginBottom={'1%'}>{name}</Text>
+                        <Text>Заказ оформлен: {orderDate}</Text>
+                        <Text marginBottom={'3%'}>Заказ получен: {orderReceived}</Text>
+                        <Text fontSize={'20px'}>Цена: ${price}</Text>
+                        <Button w={'20%'} colorPalette={'red'} onClick={()=> setConfirmationOpen()}>Удалить заказ</Button>
                     </Stack>
                 </Flex>
             </Card.Body>

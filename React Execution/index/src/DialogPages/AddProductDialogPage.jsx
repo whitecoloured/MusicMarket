@@ -1,5 +1,5 @@
 
-import { Button, Center, Flex, Input, Stack, Text } from "@chakra-ui/react"
+import { Button, Center, Flex, Input, Stack, Text, Textarea } from "@chakra-ui/react"
 import {
     DialogBody,
     DialogTrigger,
@@ -11,46 +11,83 @@ import {
     DialogTitle,
     DialogActionTrigger
   } from "../components/ui/dialog"
-import Select from "../components/ui/select";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import DialogMessage from "../components/ui/dialogmessage";
+import DialogErrorMessage from "../components/ui/dialogerrormessage";
 import CharacteristicRow from "../components/ui/characteristicrow";
+import { addProduct, getBrands } from "../../api";
 
 
-function AddProductDialogPage({isOpen, setIsOpen})
+function AddProductDialogPage({isOpen, setIsOpen, onRefresh, brands})
 {
 
     const [messageOpen, setMessageOpen]=useState(false);
+    const [errorMessageOpen, setErrorMessageOpen]=useState(false);
 
-    const [characteristics,setCharacteristics]=useState([]);
+    const dialogErrorMessage=useRef("");
+
+    const [product, setProduct]=useState(
+        {
+            name:null,
+            desc:null,
+            category:-1,
+            brandID:"00000000-0000-0000-0000-000000000000",
+            price:null,
+            characteristics:[],
+            imageURL:null
+        }
+    )
 
 
 
-    const charRows=Array(characteristics.length).fill(null).map((_, index)=>
+    const charRows=Array(product?.characteristics?.length).fill(null).map((_, index)=>
         <CharacteristicRow 
         key={index} 
         index={index}
-        chars={characteristics}
-        setChars={setCharacteristics}/>
+        chars={product?.characteristics}
+        setChars={setProduct}/>
     );
 
 
     function onAddChar()
     {
-        characteristics.push({key:'', value:''})
-        const newChars=[...characteristics];
-        setCharacteristics(newChars);
+        product?.characteristics?.push({key:'', value:''})
+        const newChars=[...product?.characteristics];
+        setProduct({...product, characteristics:newChars});
     }
 
     function onDialogPageClose()
     {
-        setCharacteristics([])
+        setProduct(
+            {
+                name:null,
+                desc:null,
+                category:-1,
+                brandID:"00000000-0000-0000-0000-000000000000",
+                price:null,
+                characteristics:[],
+                imageURL:null
+            }
+        )
         setIsOpen(false);
+        onRefresh();
     }
 
-    function onConfirm()
+    async function onConfirm()
     {
-        setMessageOpen(true);
+        const data= {
+            model:product
+        }
+        const response=await addProduct(data);
+        if (response.status===200)
+        {
+            setMessageOpen(true);
+        }
+        else
+        {
+            dialogErrorMessage.current=response?.message;
+            setErrorMessageOpen(true);
+        }
     }
 
 
@@ -77,14 +114,15 @@ function AddProductDialogPage({isOpen, setIsOpen})
                             <Text fontWeight={'bold'} marginBottom={'30px'} fontSize={'3xl'}>Изображение</Text>
                         </Stack>
                         <Stack w={'40%'}>
-                            <Input w={'100%'} variant={'subtle'} marginBottom={'10px'} placeholder="Введите название продукта"></Input>
-                            <Input w={'100%'} h={'27%'} variant={'subtle'} marginBottom={'30px'} placeholder="Введите описание продукта"></Input>
-                            <Select style={{width:'100%', marginBottom:'20px'}}>
-                                <option value={-1}>--Бренд--</option>
-                                <option value={"Yamaha"}>YAMAHA</option>
-                                <option value={"AKG"}>AKG</option>
-                            </Select>
-                            <Select style={{width:'100%', marginBottom:'15px'}}>
+                            <Input onChange={(e)=> setProduct({...product, name:e.target.value})} w={'100%'} variant={'subtle'} marginBottom={'10px'} placeholder="Введите название продукта"></Input>
+                            <Textarea onChange={(e)=> setProduct({...product, desc:e.target.value})} resize={'none'} w={'100%'} h={'27%'} variant={'subtle'} marginBottom={'30px'} placeholder="Введите описание продукта"></Textarea>
+                            <select onChange={(e)=> setProduct({...product, brandID:e.target.value})} style={{height:'30px',width:'100%', marginBottom:'20px',borderRadius:'10px 10px 10px 10px', backgroundColor:'whitesmoke'}}>
+                                <option value={"00000000-0000-0000-0000-000000000000"}>--Бренд--</option>
+                                {brands.map(brand=>
+                                    <option key={brand?.id} value={brand?.id}>{brand?.brandName}</option>
+                                )}
+                            </select>
+                            <select onChange={(e)=> setProduct({...product, category:e.target.value})} style={{height:'30px', width:'100%', marginBottom:'15px', borderRadius:'10px 10px 10px 10px', backgroundColor:'whitesmoke'}}>
                                 <option value={-1}>--Категория--</option>
                                 <option value={0}>Акустическая гитара</option>
                                 <option value={1}>Электронная гитара</option>
@@ -93,9 +131,9 @@ function AddProductDialogPage({isOpen, setIsOpen})
                                 <option value={4}>MIDI-клавиатура</option>
                                 <option value={5}>Монитор</option>
                                 <option value={6}>Наушники</option>
-                            </Select>
-                            <Input w={'100%'} variant={'subtle'} marginBottom={'10px'} placeholder="Введите цену продукта"></Input>
-                            <Input w={'100%'} variant={'subtle'} marginBottom={'8px'} placeholder="Введите ссылку на изображение продукта"></Input>
+                            </select>
+                            <Input onChange={(e)=> setProduct({...product, price:e.target.value})} type="number" step={0.01} w={'100%'} variant={'subtle'} marginBottom={'10px'} placeholder="Введите цену продукта"></Input>
+                            <Input onChange={(e)=> setProduct({...product, imageURL:e.target.value})} w={'100%'} variant={'subtle'} marginBottom={'8px'} placeholder="Введите ссылку на изображение продукта"></Input>
                         </Stack>
                     </Flex>
                     <Text fontWeight={'bold'} marginBottom={'30px'} fontSize={'3xl'}>Характеристики</Text>
@@ -112,6 +150,10 @@ function AddProductDialogPage({isOpen, setIsOpen})
                 isOpen={messageOpen}
                 toggleOpen={setMessageOpen}
                 message={"Продукт был успешно добавлен!"}/>
+                <DialogErrorMessage
+                isOpen={errorMessageOpen}
+                toggleOpen={setErrorMessageOpen}
+                message={dialogErrorMessage?.current}/>
             </DialogContent>
         </DialogRoot>
     )

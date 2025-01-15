@@ -17,7 +17,6 @@ namespace MusicMarket.Application.Mapping
             CreateMap<Review, GetAllUsersReviewsResponse>()
                 .ForMember(dest => dest.ID, opt => opt.MapFrom(p => p.Id))
                 .ForMember(dest => dest.ProductName, opt => opt.MapFrom(p => p.Product.Name))
-                .ForMember(dest => dest.ProductImageURL, opt => opt.MapFrom(p => p.Product.ImageURL))
                 .ForMember(dest => dest.Mark, opt => opt.MapFrom(p => p.Mark))
                 .ForMember(dest => dest.ReviewDesc, opt => opt.MapFrom(p => p.ReviewDesc))
                 .ForMember(dest => dest.ReviewDate, opt => opt.MapFrom(p => p.ReviewDate));

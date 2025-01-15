@@ -6,6 +6,7 @@ using MusicMarket.Application.CommandsAndQueries.Users;
 using MusicMarket.Application.CommandsAndQueries.Users.DeleteUser;
 using MusicMarket.Application.CommandsAndQueries.Users.EditUserInfo;
 using MusicMarket.Application.CommandsAndQueries.Users.GetUserInfo;
+using MusicMarket.Application.CommandsAndQueries.Users.GetUserRole;
 using MusicMarket.Application.CommandsAndQueries.Users.Login;
 using MusicMarket.Application.CommandsAndQueries.Users.Register;
 using System.Linq;
@@ -34,6 +35,17 @@ namespace MusicMarket.API.Controllers
             return Ok(data);
         }
 
+        [HttpGet]
+        [Route("GetUserRole")]
+        [Authorize("UserPolicy")]
+        public IActionResult GetUserRole()
+        {
+            var headerData = Request.Headers.FirstOrDefault(x => x.Key == "Authorization");
+            GetUserRoleQuery query = new(headerData);
+            var role = _mediator.Send(query).Result;
+            return Ok(role);
+        }
+
         [HttpPut]
         [Route("EditUserInfo")]
         [Authorize("UserPolicy")]
@@ -49,8 +61,8 @@ namespace MusicMarket.API.Controllers
         [Route("Login")]
         public async Task<IActionResult> Login(LoginCommand command)
         {
-            string token=await _mediator.Send(command);
-            return Ok(token);
+            var data=await _mediator.Send(command);
+            return Ok(data);
         }
 
         [HttpPost]

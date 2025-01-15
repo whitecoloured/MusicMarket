@@ -8,29 +8,57 @@ namespace MusicMarket.Application.Validation
         public UserValidator()
         {
             RuleFor(p => p.Login).NotEmpty()
-                .Must(c => c==c.ToLower())
-                .Must(p=> !p.Contains(' '))
-                .Must(p=> !p.Contains('\n'))
-                .WithMessage("Your login input must be filled, without spaces and in lowercase!");
+                .WithMessage("Your login input must be filled!");
+
+            When(p => p.Login is not null, () =>
+                RuleFor(p => p.Login)
+                    .Must(c => c == c.ToLower())
+                    .Must(p => !p.Contains(' '))
+                    .Must(p => !p.Contains('\n'))
+                    .WithMessage("Your login mustn't contain spaces and uppercase letters!")
+
+            );
 
             RuleFor(p => p.Email).NotEmpty()
-                .Must(c => c == c.ToLower())
                 .EmailAddress()
-                .WithMessage("Your email input must be filled correctly and in lowercase!");
+                .WithMessage("Your email input must be filled correctly!");
+
+            When(p => p.Email is not null, () =>
+                RuleFor(p=> p.Email)
+                    .Must(c => c == c.ToLower())
+                    .Must(p => !p.Contains(' '))
+                    .Must(p => !p.Contains('\n'))
+                    .WithMessage("Your email mustn't contain spaces and uppercase letters!")
+            );
 
             RuleFor(p => p.Name).NotEmpty()
-                .Must(c => c.StartsWith(c.Substring(0, 1).ToUpper()))
-                .WithMessage("Your name must be filled and contain a first letter in uppercase");
+                .WithMessage("Your name must be filled!");
+
+            When(p => p.Name is not null, () =>
+                RuleFor(p => p.Name)
+                    .Must(c => c.StartsWith(c[..1].ToUpper()))
+                    .WithMessage("Your name must contain capital letter!")
+            );
 
             RuleFor(p => p.Surname).NotEmpty()
-                .Must(c => c.StartsWith(c.Substring(0, 1).ToUpper()))
-                .WithMessage("Your surname must be filled and contain a first letter in uppercase");
+                .WithMessage("Your surname must be filled!");
+
+            When(p => p.Surname is not null, () =>
+                RuleFor(p=> p.Surname)
+                    .Must(c => c.StartsWith(c[..1].ToUpper()))
+                    .WithMessage("Your surname must contain capital letter!")
+            );
 
             RuleFor(p => p.Password).NotEmpty()
-                .Must(p=> !p.Contains(' '))
-                .Must(p=> !p.Contains('\n'))
-                .MinimumLength(12)
-                .WithMessage("Your password must contain at least 12 characters!");
+                .WithMessage("Your password must be filled!");
+
+            When(p => p.Password is not null, () =>
+                RuleFor(p=> p.Password)
+                    .Must(p => !p.Contains(' '))
+                    .Must(p => !p.Contains('\n'))
+                    .MinimumLength(12)
+                    .WithMessage("Your password mustn't contain spaces and less than 12 characters")
+            );
 
             RuleFor(p => p.Address).SetValidator(new AddressValidator());
         }

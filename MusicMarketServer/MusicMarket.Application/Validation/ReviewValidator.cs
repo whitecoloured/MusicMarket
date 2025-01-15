@@ -12,9 +12,9 @@ namespace MusicMarket.Application.Validation
                 .WithMessage("Put a mark between 0 and 5!");
 
             RuleFor(p => p.ReviewDesc)
-                .MaximumLength(300)
-                .When(p => p.ReviewDesc is not null)
-                .WithMessage("The maxiumum length of the description is 300 characters!");
+                .NotEmpty()
+                .Length(10,300)
+                .WithMessage("The description must be at length between 10 and 300 characters!");
         }
     }
 }

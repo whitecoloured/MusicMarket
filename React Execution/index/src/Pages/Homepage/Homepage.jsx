@@ -1,6 +1,7 @@
 import { Button, Center, Text } from '@chakra-ui/react';
 import HomePageBG from './HomePageBG.png'
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
 
 
 function Homepage()
@@ -16,12 +17,15 @@ function Homepage()
     document.body.style.backgroundSize='cover'
     document.body.style.backgroundRepeat='no-repeat'
 
+    const navigate=useNavigate();
+
     function onCatalogueButtonClick()
     {
         headerElem.classList.remove('nobg')
         document.body.style.backgroundImage = "none";
         document.body.style.backgroundSize='none'
         document.body.style.backgroundRepeat='none'
+        navigate("catalogue")
     }
     return(
         <>
