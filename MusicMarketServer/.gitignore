@@ -3,9 +3,9 @@
 bin/
 obj/
 
-appsettings.json
-appsettings.Development.json
+MusicMarket.API/Properties/
 
-MusicMarket.API.csproj.user
+MusicMarket.API/appsettings.Development.json
+MusicMarket.API/appsettings.json
 
-MusicMarketServer/MusicMarket.API/Properties/
+MusicMarket.API/MusicMarket.API.csproj.user
