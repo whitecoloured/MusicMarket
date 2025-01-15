@@ -3,6 +3,8 @@
 bin/
 obj/
 
+MusicMarket.Infrastructure/Migrations/
+
 MusicMarket.API/Properties/
 
 MusicMarket.API/appsettings.Development.json
