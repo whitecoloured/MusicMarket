@@ -4,6 +4,7 @@ import FilledStar from '../stars/FilledStar.png'
 import { useState } from "react"
 import Pencil from '../../../assets/Pencil.png'
 import RedCross from '../../../assets/RedCross.png'
+import { formattedDate } from "../../../dateFormatter"
 
 function ReviewCardSecondVariant({id,productName, mark, reviewDesc, reviewDate, setConfirmationOpen, onReviewEdit})
 {
@@ -35,7 +36,7 @@ function ReviewCardSecondVariant({id,productName, mark, reviewDesc, reviewDate, 
                         {!isEditing?
                         stars:
                         Array(5).fill(null).map((_,index)=>
-                            <Image key={index} h={'30px'} src={index<editableData.mark?FilledStar:Star} onClick={()=> setEditableData({...editableData, mark:index+1})}/>
+                            <Image key={index} h={'30px'} cursor={'pointer'} src={index<editableData.mark?FilledStar:Star} onClick={()=> setEditableData({...editableData, mark:index+1})}/>
                         )}
                     </Flex>
                 </Flex>
@@ -56,12 +57,12 @@ function ReviewCardSecondVariant({id,productName, mark, reviewDesc, reviewDate, 
                     <Button onClick={()=> onCancelEditing()}>Отменить</Button>
                     <Button colorPalette={'teal'} onClick={()=>{
                          onReviewEdit(editableData,id);
-                         onCancelEditing()}}>
+                         setIsEditing(false)}}>
                     Подтвердить
                     </Button>
                 </>}
                 <Flex justifyContent={'flex-end'} w={'100%'}>
-                    <Text fontSize={'13px'}>Дата: {reviewDate}</Text>
+                    <Text fontSize={'13px'}>Дата: {formattedDate(reviewDate)}</Text>
                 </Flex>
             </Card.Footer>
         </Card.Root>

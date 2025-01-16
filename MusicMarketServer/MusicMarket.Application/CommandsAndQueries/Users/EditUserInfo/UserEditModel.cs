@@ -1,9 +1,8 @@
 ﻿using MusicMarket.Core.Models;
-using System;
 
-namespace MusicMarket.Application.CommandsAndQueries.Users.GetUserInfo
+namespace MusicMarket.Application.CommandsAndQueries.Users.EditUserInfo
 {
-    public class GetUserInfoResponse
+    public class UserEditModel
     {
         public string Name { get; set; }
         public string Surname { get; set; }

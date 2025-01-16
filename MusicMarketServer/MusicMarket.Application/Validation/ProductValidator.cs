@@ -9,7 +9,7 @@ namespace MusicMarket.Application.Validation
         {
             RuleFor(p => p.Name).NotEmpty().WithMessage("The name of product is empty!");
 
-            When(p => p.Name is not null, () =>
+            When(p => !string.IsNullOrWhiteSpace(p.Name), () =>
             {
                 RuleFor(p => p.Name)
                     .Must(p => p.StartsWith(p[..1].ToUpper()))
@@ -19,7 +19,7 @@ namespace MusicMarket.Application.Validation
 
             RuleFor(p => p.Desc).NotEmpty().WithMessage("The description of product is empty!");
 
-            When(p => p.Desc is not null, () =>
+            When(p => !string.IsNullOrWhiteSpace(p.Desc), () =>
             {
                 RuleFor(p => p.Desc)
                     .Must(p => p.StartsWith(p[..1].ToUpper()))
@@ -39,8 +39,8 @@ namespace MusicMarket.Application.Validation
             When(p => p.Characteristics?.Count != 0, () =>
             {
                 RuleForEach(p => p.Characteristics)
-                    .Must(p => p.Key?.Trim() != "")
-                    .Must(p => p.Value?.Trim() != "")
+                    .Must(p => !string.IsNullOrWhiteSpace(p.Key))
+                    .Must(p => !string.IsNullOrEmpty(p.Value))
                     .WithMessage("One or some of your keys or values aren't specified!");
             });
 

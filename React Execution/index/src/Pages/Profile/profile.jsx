@@ -6,6 +6,7 @@ import UsersReviewsDialogPage from "../../DialogPages/UsersReviewsDialogPage";
 import UsersOrdersDialogPage from "../../DialogPages/UsersOrdersDialogPage";
 import { useEffect, useRef, useState } from "react";
 import EditProfileInfoDialogPage from "../../DialogPages/EditProfileInfoDialogPage";
+import EditPasswordDialogPage from "../../DialogPages/EditPasswordDialogPage"
 import DialogMessage from "../../components/ui/dialogmessage";
 import DialogConfirmation from "../../components/ui/dialogconfirmation"
 import DialogErrorMessage from "../../components/ui/dialogerrormessage"
@@ -55,6 +56,32 @@ function Profile()
         }
         fetchData();
     },[])
+
+    function GetStreetTypeString(streetType)
+    {
+        if (streetType===0)
+        {
+            return "улица";
+        }
+        if (streetType===1)
+        {
+            return "переулок"
+        }
+        if (streetType===2)
+        {
+            return "площадь"
+        }
+        if (streetType===3)
+        {
+            return "проспект"
+        }
+    }
+    function FullAddress()
+    {
+        return userData?.address?
+        `${GetStreetTypeString(userData?.address?.streetType)} ${userData?.address?.streetName}, ${userData?.address?.streetNumber}`:
+        ""
+    }
 
     function onLogout()
     {
@@ -138,6 +165,12 @@ function Profile()
         const addReviewsData=await getUsersReviews();
         setUsersReviews(addReviewsData);
     }
+
+    async function onRefreshUserData()
+    {
+        const addUserData=await getUserInfo();
+        setUserData(addUserData);
+    }
     return(
         <>
         {localStorage.getItem("authToken")?
@@ -151,11 +184,12 @@ function Profile()
                         <Text fontSize={'20px'} color={'white'}>Имя: {userData?.name}</Text>
                         <Text fontSize={'20px'} color={'white'}>Фамилия: {userData?.surname}</Text>
                         <Text fontSize={'20px'} color={'white'}>Логин: {userData?.login}</Text>
-                        <Text fontSize={'20px'} color={'white'}>Адрес: {userData?.address}</Text>
+                        <Text fontSize={'20px'} color={'white'}>Адрес: {FullAddress()}</Text>
                         <Text fontSize={'20px'} color={'white'}>Почта: {userData?.email}</Text>
                     </Stack>
                     <Flex justifyContent={'flex-end'}>
-                        <Button w={'20%'} size={'xl'} backgroundColor={'#DE3B3B'} onClick={()=> onLogout()}>Выйти</Button>
+                        <EditPasswordDialogPage/>
+                        <Button w={'15%'} size={'xl'} backgroundColor={'#DE3B3B'} onClick={()=> onLogout()}>Выйти</Button>
                     </Flex>
                     <Text fontWeight={'bold'} fontSize={'20px'} color={'white'} marginBottom={'1.5%'}>Самый последний заказ</Text>
                     {usersOrders.length>0?
@@ -208,7 +242,9 @@ function Profile()
                     <Center>
                         <EditProfileInfoDialogPage
                         isOpen={isEditDialogPageOpen}
-                        setIsOpen={setIsEditDialogPageOpen}/>
+                        setIsOpen={setIsEditDialogPageOpen}
+                        initialUserData={userData}
+                        refreshUserData={onRefreshUserData}/>
                         <Button w={'35%'} size={'xl'} backgroundColor={'#DE3B3B'} marginBottom={'4%'} 
                         onClick={()=> {
                         confirmFunc.current=onProfileDelete;

@@ -23,7 +23,6 @@ function LoginPage()
     async function onLoginSubmit()
     {
         const response=await loginUser(loginData);
-        console.log(response);
         if (response?.status===200)
         {
             localStorage.setItem("authToken", response?.data);

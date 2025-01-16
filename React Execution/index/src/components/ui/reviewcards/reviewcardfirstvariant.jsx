@@ -4,6 +4,7 @@ import FilledStar from '../stars/FilledStar.png'
 import Pencil from '../../../assets/Pencil.png'
 import RedCross from '../../../assets/RedCross.png'
 import { useState } from "react";
+import { formattedDate } from "../../../dateFormatter";
 
 function ReviewCardFirstVariant({id,name, surname, mark, reviewDesc, reviewDate, doesBelongToUser, setConfirmationOpen, onReviewEdit})
 {
@@ -68,11 +69,11 @@ function ReviewCardFirstVariant({id,name, surname, mark, reviewDesc, reviewDate,
                     <Button onClick={()=> onCancelEditing()}>Отменить</Button>
                     <Button colorPalette={'teal'} onClick={()=> {
                         onReviewEdit(editableData, id);
-                        onCancelEditing();}}>Подтвердить</Button>
+                        setIsEditing(false);}}>Подтвердить</Button>
                     </>}
                 </>}
                 <Flex justifyContent={'flex-end'} w={'100%'}>
-                    <Text fontSize={'13px'}>Дата: {reviewDate}</Text>
+                    <Text fontSize={'13px'}>Дата: {formattedDate(reviewDate)}</Text>
                 </Flex>
             </Card.Footer>
         </Card.Root>

@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using MusicMarket.Application.CommandsAndQueries.Users;
 using MusicMarket.Application.CommandsAndQueries.Users.DeleteUser;
+using MusicMarket.Application.CommandsAndQueries.Users.EditPassword;
 using MusicMarket.Application.CommandsAndQueries.Users.EditUserInfo;
 using MusicMarket.Application.CommandsAndQueries.Users.GetUserInfo;
 using MusicMarket.Application.CommandsAndQueries.Users.GetUserRole;
@@ -49,12 +49,24 @@ namespace MusicMarket.API.Controllers
         [HttpPut]
         [Route("EditUserInfo")]
         [Authorize("UserPolicy")]
-        public async Task<IActionResult> EditUserInfo(UserModel model)
+        public async Task<IActionResult> EditUserInfo(UserEditModel model)
         {
             var HeaderData = Request.Headers.FirstOrDefault(x => x.Key == "Authorization");
             EditUserInfoCommand command = new(model, HeaderData);
             await _mediator.Send(command);
             return Ok();
+        }
+
+        [HttpPatch]
+        [Route("EditPassword")]
+        [Authorize("UserPolicy")]
+        public async Task<IActionResult> EditPassword(string oldPassword, string newPassword)
+        {
+            var headerData = Request.Headers.FirstOrDefault(x => x.Key == "Authorization");
+            EditPasswordCommand command=new(oldPassword, newPassword, headerData);
+            await _mediator.Send(command);
+            return Ok();
+
         }
 
         [HttpPost]

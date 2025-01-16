@@ -10,7 +10,7 @@ namespace MusicMarket.Application.Validation
             RuleFor(p => p.BrandName).NotEmpty()
                 .WithMessage("Your brand name must be filled!");
 
-            When(p => p.BrandName is not null, () =>
+            When(p => !string.IsNullOrWhiteSpace(p.BrandName), () =>
                 RuleFor(p=> p.BrandName)
                     .MaximumLength(50)
                     .Must(p => !p.Contains('\n'))

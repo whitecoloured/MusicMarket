@@ -26,9 +26,11 @@ namespace MusicMarket.Application.CommandsAndQueries.Users.EditUserInfo
         public async Task<Unit> Handle(EditUserInfoCommand request, CancellationToken cancellationToken)
         {
             Guid ID = JwtDataProviderService.GetUserIDFromToken(request.HeaderData);
-            var user = await _repo.GetCertainUserByID(ID);
+            var user = await _repo.GetCertainUserByID(ID) ?? throw new NotFoundException("The user wasn't found!");
 
             var newUser = _mapper.Map<User>(request.UserModel);
+
+            newUser.Password=user.Password;
 
             var modelState = await _validator.ValidateAsync(newUser, cancellationToken);
 
@@ -36,10 +38,6 @@ namespace MusicMarket.Application.CommandsAndQueries.Users.EditUserInfo
             {
                 throw new BadRequestException(string.Join('\n', modelState.Errors));
             }
-
-            string hashPassword=HashService.GetHashPassword(newUser.Password);
-
-            newUser.Password = hashPassword;
 
             if (await _repo.HasTheSameDataForEditing(newUser, ID))
             {

@@ -1,4 +1,4 @@
-import { Box, Center,Flex, Input, Stack, Text, CheckboxGroup } from '@chakra-ui/react';
+import { Box, Center,Flex, Input, Stack, Text, CheckboxGroup, Button } from '@chakra-ui/react';
 import { Checkbox } from '../../components/ui/checkbox';
 import './catalogue.css'
 import ProductItem from '../../components/ui/productitem';
@@ -35,6 +35,11 @@ function Catalogue()
     const dialogMessage=useRef("");
     const dialogErrorMessage=useRef("");
 
+    if (productAmount?.current<13 && filters.page!==1)
+    {
+        setFilters({...filters, page:1})
+    }
+
     useEffect(()=>
     {
         const fetchData=async()=>
@@ -60,6 +65,11 @@ function Catalogue()
     {
         const[OrderByAsc, SortItem]=e.target.value.split(',')
         setFilters({...filters, sortItem: SortItem, orderByAsc: OrderByAsc});
+    }
+
+    function onFilterClear()
+    {
+        setFilters({...filters, brandIDs:[], categories:[],firstPrice:null, secondPrice:null})
     }
 
     async function onAddingToCart(id,name)
@@ -115,7 +125,7 @@ function Catalogue()
                             Цена
                         </Text>
                     </Center>
-                    <Center marginBottom={'4%'}>
+                    <Center marginBottom={'6%'}>
                         <Stack w={'85%'} spaceY={'-3%'}>
                             <Text fontSize={'15px'} fontWeight={'bolder'} fontFamily={'"Inter", sans-serif'}>
                                 От:
@@ -127,6 +137,9 @@ function Catalogue()
                             <Input type='number' step={0.01} onChange={(e)=> setFilters({...filters, secondPrice:e.target.value?Number.parseFloat(e.target.value):null})} w={'70%'} h={'25px'} backgroundColor={'#C3C3C3'}/>
                         </Stack>
                     </Center>
+                    <Flex marginBottom={'4%'} justifyContent={'center'}>
+                        <Button onClick={()=> onFilterClear()}>Очистить</Button>
+                    </Flex>
                 </div>
                 <div className='secCol'>
                     <Center backgroundColor={'#48545B'} h={'70px'} marginBottom={'1.7%'}>

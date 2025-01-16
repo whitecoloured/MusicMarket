@@ -33,8 +33,8 @@ namespace MusicMarket.Infrastructure.Repositories.Implementations
         {
             user.Name = newUser.Name;
             user.Surname = newUser.Surname;
-            user.Password = newUser.Password;
             user.Login = newUser.Login;
+            user.Email = newUser.Email;
             user.Address = newUser.Address;
             await _context.SaveChangesAsync();
         }
@@ -73,8 +73,23 @@ namespace MusicMarket.Infrastructure.Repositories.Implementations
 
         public async Task<bool> HasTheSameDataForEditing(User User, Guid UserID)
         {
-            return await _context.Users.AnyAsync(p => (p.Login == User.Login || p.Password == User.Password || p.Email==User.Email) && p.Id != UserID);
+            return await _context.Users.AnyAsync(p => (p.Login == User.Login || p.Email==User.Email) && p.Id != UserID);
         }
 
+        public async Task EditPassword(User user, string newPassword)
+        {
+            user.Password= newPassword;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<bool> IsUserPasswordCorrect(string CheckPassowrd, Guid UserID)
+        {
+            return await _context.Users.AnyAsync(p=> p.Id == UserID && p.Password==CheckPassowrd);
+        }
+
+        public async Task<bool> DoesUserWithThePasswordExists(string Password)
+        {
+            return await _context.Users.AnyAsync(p=> p.Password==Password);
+        }
     }
 }

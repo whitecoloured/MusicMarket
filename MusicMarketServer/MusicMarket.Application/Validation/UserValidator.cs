@@ -10,7 +10,7 @@ namespace MusicMarket.Application.Validation
             RuleFor(p => p.Login).NotEmpty()
                 .WithMessage("Your login input must be filled!");
 
-            When(p => p.Login is not null, () =>
+            When(p => !string.IsNullOrWhiteSpace(p.Login), () =>
                 RuleFor(p => p.Login)
                     .Must(c => c == c.ToLower())
                     .Must(p => !p.Contains(' '))
@@ -23,7 +23,7 @@ namespace MusicMarket.Application.Validation
                 .EmailAddress()
                 .WithMessage("Your email input must be filled correctly!");
 
-            When(p => p.Email is not null, () =>
+            When(p => !string.IsNullOrWhiteSpace(p.Email), () =>
                 RuleFor(p=> p.Email)
                     .Must(c => c == c.ToLower())
                     .Must(p => !p.Contains(' '))
@@ -34,7 +34,7 @@ namespace MusicMarket.Application.Validation
             RuleFor(p => p.Name).NotEmpty()
                 .WithMessage("Your name must be filled!");
 
-            When(p => p.Name is not null, () =>
+            When(p => !string.IsNullOrWhiteSpace(p.Name), () =>
                 RuleFor(p => p.Name)
                     .Must(c => c.StartsWith(c[..1].ToUpper()))
                     .WithMessage("Your name must contain capital letter!")
@@ -43,7 +43,7 @@ namespace MusicMarket.Application.Validation
             RuleFor(p => p.Surname).NotEmpty()
                 .WithMessage("Your surname must be filled!");
 
-            When(p => p.Surname is not null, () =>
+            When(p => !string.IsNullOrWhiteSpace(p.Surname), () =>
                 RuleFor(p=> p.Surname)
                     .Must(c => c.StartsWith(c[..1].ToUpper()))
                     .WithMessage("Your surname must contain capital letter!")
@@ -52,7 +52,7 @@ namespace MusicMarket.Application.Validation
             RuleFor(p => p.Password).NotEmpty()
                 .WithMessage("Your password must be filled!");
 
-            When(p => p.Password is not null, () =>
+            When(p => !string.IsNullOrWhiteSpace(p.Password), () =>
                 RuleFor(p=> p.Password)
                     .Must(p => !p.Contains(' '))
                     .Must(p => !p.Contains('\n'))

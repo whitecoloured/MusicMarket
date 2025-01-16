@@ -541,6 +541,7 @@ export const getUserRole=async()=>
     }
 }
 
+
 export const editUserInfo=async(editData)=>
 {
     try{
@@ -557,6 +558,31 @@ export const editUserInfo=async(editData)=>
     {
         console.error(error)
         return error.response.data
+    }
+}
+
+export const editPassword=async(passwords)=>
+{
+    try{
+        const response=await axios.patch("https://localhost:44333/api/Users/EditPassword",null,
+            {
+                headers:
+                {
+                    Authorization:`Bearer ${localStorage.getItem("authToken")}`
+                },
+                params:
+                {
+                    oldPassword:passwords?.oldPassword,
+                    newPassword:passwords?.newPassword
+                }
+            }
+        );
+        return response;
+    }
+    catch(error)
+    {
+        console.error(error);
+        return error.response.data;
     }
 }
 

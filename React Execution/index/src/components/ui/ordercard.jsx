@@ -1,4 +1,5 @@
 import { Button, Card, Flex, Image, Stack, Text } from "@chakra-ui/react"
+import { formattedDate } from "../../dateFormatter";
 
 function OrderCard({id,name, orderDate, orderReceived, price, imageURL, setConfirmationOpen})
 {
@@ -9,8 +10,8 @@ function OrderCard({id,name, orderDate, orderReceived, price, imageURL, setConfi
                     <Image w={'12%'} src={imageURL} marginRight={'5%'}/>
                     <Stack w={'67%'}>
                         <Text fontWeight={'bold'} fontSize={'36px'} marginBottom={'1%'}>{name}</Text>
-                        <Text>Заказ оформлен: {orderDate}</Text>
-                        <Text marginBottom={'3%'}>Заказ получен: {orderReceived}</Text>
+                        <Text>Заказ оформлен: {formattedDate(orderDate)}</Text>
+                        <Text marginBottom={'3%'}>Заказ получен: {formattedDate(orderReceived)}</Text>
                         <Text fontSize={'20px'}>Цена: ${price}</Text>
                         <Button w={'20%'} colorPalette={'red'} onClick={()=> setConfirmationOpen()}>Удалить заказ</Button>
                     </Stack>

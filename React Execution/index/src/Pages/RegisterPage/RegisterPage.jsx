@@ -3,6 +3,7 @@ import './registerpage.css'
 import { useRef, useState } from 'react';
 import { registerUser } from '../../../api';
 import DialogErrorMessage from '../../components/ui/dialogerrormessage';
+import { useNavigate } from 'react-router';
 
 function RegisterPage()
 {
@@ -33,6 +34,7 @@ function RegisterPage()
         const response=await registerUser(postData);
         if (response?.status===200)
         {
+            localStorage.setItem("authToken", response?.data);
             navigate("/catalogue")
         }
         else
@@ -43,7 +45,6 @@ function RegisterPage()
         
     }
 
-    console.log(registerData)
     return(
         <div className="registerPageForm">
             <Center h={'15%'}>
